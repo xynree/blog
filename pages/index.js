@@ -150,7 +150,7 @@ else return (
 
 // API call gets made here and all props get sent down to children components:
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Run API calls in parallel
   const [articles, categories, homepage, homes, notes, links, projects] =
     await Promise.all([
