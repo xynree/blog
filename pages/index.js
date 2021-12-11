@@ -78,7 +78,7 @@ if (isMobile) {
       isMobile: isMobile
     }}
   >
-    <div className="top-0 flex flex-col w-full h-full flex-none overflow-scroll justify-evenly divide-x divide-gray-700 divide-dotted basebg">
+    <div className="top-0 flex flex-col w-full h-full flex-none overflow-visible justify-evenly divide-x divide-gray-700 divide-dotted basebg">
       <div className='flex-none w-full h-1/3'>
       <Seo seo={homepage.seo} />
         <div className="w-full flex-none">
@@ -91,7 +91,7 @@ if (isMobile) {
         />
         </div>
       
-      <div className="flex justify-between h-2/3 flex-none w-full  divide-x divide-gray-600 border-dotted  basebg overflow-scroll">
+      <div className="flex justify-between h-2/3 flex-none w-full  divide-x divide-gray-600 border-dotted  basebg overflow-visible">
         {page ? (
           <>
             <Display />
@@ -116,7 +116,7 @@ else return (
     >
       <div className="absolute flex justify-evenly divide-x divide-gray-700 divide-dotted w-full h-full">
         <Seo seo={homepage.seo} />
-        <div className="flex flex-col w-full h-full float-left cursor-pointer overflow-scroll justify-start align-start p-0">
+        <div className="flex flex-col w-full h-full float-left cursor-pointer overflow-visible justify-start align-start p-0">
           <div className="h-28 flex-none">
             <Profile title={homepage.hero.title} />
           </div>
@@ -129,7 +129,7 @@ else return (
             switchDirectory={switchDirectory}
           />
         </div>
-        <div className="flex justify-between h-full w-full  divide-x divide-gray-600 border-dotted float-right overflow-scroll">
+        <div className="flex justify-between h-full w-full  divide-x divide-gray-600 border-dotted float-right overflow-visible">
           {page ? (
             <>
               {" "}
