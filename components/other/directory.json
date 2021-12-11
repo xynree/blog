@@ -1,0 +1,58 @@
+{
+  "nodes": [
+    {
+      "id": "home",
+      "name": "home",
+      "val": 6
+    },
+    {
+      "id": "links",
+      "name": "links",
+      "val": 5
+    },
+
+    {
+      "id": "proj",
+      "name": "projects",
+      "val": 2
+    },
+    {
+      "id": "blog",
+      "name": "blog",
+      "val": 3
+    },
+    {
+      "id": "notes",
+      "name": "notes",
+      "val": 4
+    },
+    {
+      "id": "about",
+      "name": "about",
+      "val": 6
+    }
+  ],
+  "links": [
+    {
+      "source": "home",
+      "target": "links"
+    },
+    {
+      "source": "home",
+      "target": "about"
+    },
+    {
+      "source": "home",
+      "target": "proj"
+    },
+    {
+      "source": "home",
+      "target": "blog"
+    },
+
+    {
+      "source": "home",
+      "target": "notes"
+    }
+  ]
+}

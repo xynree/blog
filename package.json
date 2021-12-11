@@ -1,0 +1,43 @@
+{
+  "name": "my-blog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "develop": "next dev",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "next build && next export",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@react-spring/parallax": "^9.2.4",
+    "d3": "^7.0.1",
+    "global": "^4.4.0",
+    "moment": "^2.24.0",
+    "next": "^11.0.0",
+    "p5js": "^1.2.17",
+    "react": "17.0.0",
+    "react-blur": "^1.0.1",
+    "react-dom": "^17.0.2",
+    "react-force-graph": "^1.41.7",
+    "react-markdown": "^4.2.2",
+    "react-moment": "^0.9.6",
+    "react-p5-wrapper": "^2.4.1",
+    "react-responsive": "^9.0.0-beta.4",
+    "react-spring": "^9.2.4",
+    "react-use-measure": "^2.0.4",
+    "vercel": "^23.1.2"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "eslint": "^7.30.0",
+    "eslint-config-next": "^11.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.1"
+  }
+}
