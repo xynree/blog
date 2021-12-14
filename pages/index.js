@@ -20,66 +20,67 @@ const Home = ({ articles, homepage, homes, notes, links, projects }) => {
     directory: homes,
   }
 
-  const [currentPage, setCurrentPage] = useState(defaultDir)
+  const [currentDirectory, setCurrentDirectory] = useState(defaultDir)
   const [thumbnails, setThumbnails] = useState([])
-  const [page, setPage] = useState()
-  const [clicked, setClicked] = useState(false)
+  const [currentPage, setCurrentPage] = useState('')
+  const [isAboutPageVisible, setAboutPageStatus] = useState(true)
   const isMobile = useMediaQuery({ query: '(max-width: 1000px)' })
+
 
   const switchDirectory = (title, e) => {
     e.preventDefault()
     switch (title) {
       case "home":
-        setCurrentPage(defaultDir)
+        setCurrentDirectory(defaultDir)
         break
       case "blog":
-        setCurrentPage({
+        setCurrentDirectory({
           title: "blog",
           dirTitles: ["year", "title", "date", "category"],
           directory: articles,
         })
         break
       case "notes":
-        setCurrentPage({
+        setCurrentDirectory({
           title: "notes",
           dirTitles: ["year", "title", "date", "category"],
           directory: notes,
         })
         break
       case "links":
-        setCurrentPage({
+        setCurrentDirectory({
           title: "links",
           dirTitles: ["title", "", "description", ""],
           directory: links,
         })
         break
       case "projects":
-        setCurrentPage({
+        setCurrentDirectory({
           title: "projects",
           dirTitles: ["year", "title", "description", ""],
           directory: projects,
         })
         break
       case "about":
-        setClicked((clicked) => !clicked)
+        setAboutPageStatus((isAboutPageVisible) => !isAboutPageVisible)
       default:
         break
     }
   }
 
-  console.log(isMobile)
-if (isMobile) {
-  return (<MyContext.Provider
+  if (isMobile) {
+  return (
+  <MyContext.Provider
     value={{
-      currentPage: currentPage,
+      currentDirectory: currentDirectory,
       switchDirectory: switchDirectory,
       addThumbs: [thumbnails, setThumbnails],
-      about: [clicked, setClicked],
-      switchPage: [page, setPage],
+      aboutPageStatus: [isAboutPageVisible, setAboutPageStatus],
+      switchPage: [currentPage, setCurrentPage],
       isMobile: isMobile
-    }}
-  >
-    <div className="top-0 flex flex-col w-full h-full flex-none overflow-visible justify-evenly divide-x divide-gray-700 divide-dotted basebg">
+  }}>
+      
+    <div className="top-0 flex flex-col w-full h-full flex-none overflow-scroll nodisplay justify-evenly divide-x divide-gray-700 divide-dotted basebg">
       <div className='flex-none w-full h-1/3'>
       <Seo seo={homepage.seo} />
         <div className="w-full flex-none">
@@ -87,64 +88,64 @@ if (isMobile) {
           <About description={homepage.hero.description}/>
         </div>
         <MemoArticles
-          currentPage={currentPage}
+          currentDirectory={currentDirectory}
           switchDirectory={switchDirectory}
         />
         </div>
       
-      <div className="flex justify-between h-2/3 flex-none w-full  divide-x divide-gray-600 border-dotted  basebg overflow-visible">
-        {page ? (
-          <>
-            <Display />
-          </>
-        ) : (
-''        )}
+      <div className="flex justify-between h-2/3 flex-none w-full  divide-x divide-gray-600 border-dotted  basebg overflow-scroll nodisplay">
+        {
+        currentPage === '' ? 
+        '' 
+        :  
+        <><Display/></>
+        }
       </div>
     </div>
-  </MyContext.Provider>)
+  </MyContext.Provider>
+  )
 }
 
 else return (
-    <MyContext.Provider
-      value={{
-        currentPage: currentPage,
-        switchDirectory: switchDirectory,
-        addThumbs: [thumbnails, setThumbnails],
-        about: [clicked, setClicked],
-        switchPage: [page, setPage],
-      }}
-    >
-      <div className="absolute flex justify-evenly divide-x divide-gray-700 divide-dotted w-full h-full">
-        <Seo seo={homepage.seo} />
-        <div className="flex flex-col w-full h-full float-left cursor-pointer overflow-visible justify-start align-start p-0">
-          <div className="h-28 flex-none">
-            <Profile title={homepage.hero.title} />
-          </div>
-          <div className="relative flex justify-center align-center flex-none">
-            <MemoForce switchDirectory={switchDirectory} />
-          </div>
-          <div className="h-7 flex-none"></div>
-          <MemoArticles
-            currentPage={currentPage}
-            switchDirectory={switchDirectory}
-          />
+  <MyContext.Provider
+    value={{
+      currentDirectory: currentDirectory,
+      switchDirectory: switchDirectory,
+      addThumbs: [thumbnails, setThumbnails],
+      aboutPageStatus: [isAboutPageVisible, setAboutPageStatus],
+      switchPage: [currentPage, setCurrentPage],
+    }}
+  >
+    <div className="absolute flex justify-evenly divide-x divide-gray-700 divide-dotted w-full h-full">
+      <Seo seo={homepage.seo} />
+      <div className="flex flex-col w-full h-full float-left cursor-pointer overflow-scroll nodisplay justify-start align-start p-0">
+        <div className="h-28 flex-none">
+          <Profile title={homepage.hero.title} />
         </div>
-        <div className="flex justify-between h-full w-full  divide-x divide-gray-600 border-dotted float-right overflow-visible">
-          {page ? (
-            <>
-              {" "}
-              <Display />
-              <Info homepage={homepage} />
-            </>
-          ) : (
-            <>
-              <View />
-              <Info homepage={homepage} />
-            </>
-          )}
+        <div className="relative flex justify-center align-center flex-none">
+          <MemoForce switchDirectory={switchDirectory} />
         </div>
+        <div className="h-7 flex-none"></div>
+        <MemoArticles
+          currentDirectory={currentDirectory}
+          switchDirectory={switchDirectory}
+        />
       </div>
-    </MyContext.Provider>
+      <div className="flex justify-between h-full w-full  divide-x divide-gray-600 border-dotted float-right overflow-scroll nodisplay">
+      {currentPage === '' ? 
+        <>
+          <View />
+          <Info homepage={homepage} />
+        </>
+        :  
+        <>
+        <Display />
+        <Info homepage={homepage} />
+        </>}
+      
+      </div>
+    </div>
+  </MyContext.Provider>
   )
 }
 

@@ -5,33 +5,34 @@ import ReactMarkdown from "react-markdown"
 import Link from "next/link"
 
 const Display = () => {
-  const currentPage = useContext(MyContext).currentPage
-  const [article] = useContext(MyContext).switchPage
+  const currentDirectory = useContext(MyContext).currentDirectory
+  const [currentPage] = useContext(MyContext).switchPage
 
-  switch (currentPage.title) {
+
+  switch (currentDirectory.title) {
     case "blog":
       return (
         <div className="flex flex-col align-center w-full">
-          {article.image
-            ? article.image.map((pic) => (
+          {currentPage.image
+            ? currentPage.image.map((pic) => (
                 <NextImage key={pic.id} image={pic} objectFit={"cover"} />
               ))
             : ""}
           <div className="mr-16">
             <div className="text-5xl m-4 sftext text-black">
-              {article.title}
+              {currentPage.title}
             </div>
-            {article.date ? (
+            {currentPage.date ? (
               <p className="m-4 text-sm italic">
                 Created On:{" "}
-                <span className=" sfthin text-sm  m-auto"> {article.date}</span>{" "}
+                <span className=" sfthin text-sm  m-auto"> {currentPage.date}</span>{" "}
               </p>
             ) : (
               ""
             )}
-            {article.content ? (
+            {currentPage.content ? (
               <p className="m-4 text-black sflight text-lg font-light">
-                <ReactMarkdown children={article.content} />
+                <ReactMarkdown children={currentPage.content} />
               </p>
             ) : (
               ""
@@ -42,26 +43,26 @@ const Display = () => {
     case "notes":
       return (
         <div className="flex flex-col align-center w-full">
-          {article.image
-            ? article.image.map((pic) => (
+          {currentPage.image
+            ? currentPage.image.map((pic) => (
                 <NextImage key={pic.id} image={pic} objectFit={"cover"} />
               ))
             : ""}
           <div className="mr-16">
             <div className="text-5xl m-4 sftext text-black">
-              {article.title}
+              {currentPage.title}
             </div>
-            {article.date ? (
+            {currentPage.date ? (
               <p className="m-4 text-sm italic">
                 Created On:{" "}
-                <span className=" sfthin text-sm  m-auto"> {article.date}</span>{" "}
+                <span className=" sfthin text-sm  m-auto"> {currentPage.date}</span>{" "}
               </p>
             ) : (
               ""
             )}
-            {article.content ? (
+            {currentPage.content ? (
               <p className="m-4 text-black sflight text-lg font-light">
-                <ReactMarkdown children={article.content} />
+                <ReactMarkdown children={currentPage.content} />
               </p>
             ) : (
               ""
@@ -72,7 +73,7 @@ const Display = () => {
     case "projects":
       return (
         <div className="flex flex-col align-center w-full">
-          {article.image.map((pic) => (
+          {currentPage.image.map((pic) => (
             <NextImage
               key={pic.id}
               image={pic}
@@ -82,18 +83,18 @@ const Display = () => {
             />
           ))}
 
-          {article.body ? (
-            <Link href={article.link ? article.link : "/"} passHref={true}>
+          {currentPage.body ? (
+            <Link href={currentPage.link ? currentPage.link : "/"} passHref={true}>
               <div className="text-5xl m-4 sflight text-black">
-                {article.title ? article.title : ""}
+                {currentPage.title ? currentPage.title : ""}
               </div>
             </Link>
           ) : (
             ""
           )}
-          {article.body ? (
+          {currentPage.body ? (
             <p className="m-4 text-black sflight text-lg font-light">
-              <ReactMarkdown children={article.body} />
+              <ReactMarkdown children={currentPage.body} />
             </p>
           ) : (
             ""

@@ -27,7 +27,7 @@ function nodePaint({ val, x, y, name }, color, ctx) {
 const noSSR = ({ switchDirectory }) => {
   const [didLoad, setDidLoad] = useState(false)
   const fgRef = useRef()
-  const [, setPage] = useContext(MyContext).switchPage
+  const [, setCurrentPage] = useContext(MyContext).switchPage
 
   useEffect(() => {
     if (!didLoad) {
@@ -52,7 +52,9 @@ const noSSR = ({ switchDirectory }) => {
       linkDirectionalParticleSpeed={0.004}
       linkDirectionalParticleWidth={1.7}
       onNodeClick={(node, e) => {
-        setPage()
+        if (node.name !== 'about'){
+          setCurrentPage('')
+        }
         switchDirectory(node.name, e)
       }}
       onNodeDragEnd={(node) => {

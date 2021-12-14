@@ -5,16 +5,14 @@ import Link from "next/link"
 
 export const StyledLink = () => {
   {
-    ;<a>{{ children }}</a>
+    <a>{{ children }}</a>
   }
 }
 
 const Card = ({ article, addThumbnails }) => {
-  const { currentPage, switchDirectory } = useContext(MyContext)
-  const [page, setPage] = useContext(MyContext).switchPage
-  const [clicked, setClicked] = useContext(MyContext).about
-  const isMobile = useContext(MyContext).isMobile
-
+  const { currentDirectory, switchDirectory } = useContext(MyContext)
+  const [,setCurrentPage] = useContext(MyContext).switchPage
+  const [,setAboutPageStatus] = useContext(MyContext).aboutPageStatus
 
   const [{ color, borderColor }, set] = useSpring(() => ({
     color: "#111827",
@@ -24,7 +22,7 @@ const Card = ({ article, addThumbnails }) => {
     },
   }))
 
-  const dirTitles = {
+  const directory = {
     home: [
       article.title ? article.title : "",
       "",
@@ -57,29 +55,29 @@ const Card = ({ article, addThumbnails }) => {
     ],
   }
 
-  const calcAtt = (index) => {
+  const calcCustomAttributes = (index) => {
     let extraAtt = []
 
-    if (article.title === dirTitles[currentPage.title][index]) {
+    if (article.title === directory[currentDirectory.title][index]) {
       extraAtt.push("font-normal")
     }
     if (index === 0) {
       extraAtt.push("pl-8")
     }
-    if (index === dirTitles[currentPage.title].length - 1) {
+    if (index === directory[currentDirectory.title].length - 1) {
       extraAtt.push("pr-3")
     }
     return extraAtt.join(" ")
   }
 
-  const cardClick = (e) => {
-    if (currentPage.title === "about") {
-      setClicked((clicked) => !clicked)
-    } else setClicked(true)
-    if (currentPage.title === "home") {
+  const checkDirectoryOrPageSelect = (e) => {
+    if (currentDirectory.title === "home") {
       switchDirectory(article.title, e)
-    } else setPage(article)
-  }
+    } else {
+      setAboutPageStatus(false)
+      setCurrentPage(article)
+  }}
+
 
   return (
     <animated.tr
@@ -88,17 +86,16 @@ const Card = ({ article, addThumbnails }) => {
       onMouseEnter={() => set({ color: "#deae91", borderColor: "#de684e" })}
       onMouseLeave={() => set({ color: "#111827", borderColor: "#111827" })}
     >
-      {dirTitles[currentPage.title].map((segment, index) => {
-        let extraAtt = calcAtt(index)
+      {directory[currentDirectory.title].map((titleSegment, index) => {
         return (
           <Link key={`${article.title}_${index}`} href={article.link ? article.link : "/"} passHref={true}>
             <animated.td
-              className={`${extraAtt} text-2xl sftext font-light capitalize`}
+              className={`${calcCustomAttributes(index)} text-2xl sftext font-light capitalize`}
               style={{ color }}
               onMouseEnter={() => addThumbnails(article)}
-              onClick={(e) => cardClick(e)}
+              onClick={(e) => checkDirectoryOrPageSelect(e)}
             >
-              {segment}
+              {titleSegment}
             </animated.td>
           </Link>
         )

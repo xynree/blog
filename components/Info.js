@@ -4,25 +4,25 @@ import About from "./About"
 import { MyContext } from "../pages"
 
 const Info = ({ homepage }) => {
-  const [hovered, setHovered] = useState(false)
-  const [clicked, setClicked] = useContext(MyContext).about
+  const [isAboutSectionHovered, setHoveredStatus] = useState(false)
+  const [isAboutPageVisible, setAboutPageStatus] = useContext(MyContext).aboutPageStatus
   const isMobile = useContext(MyContext).isMobile
 
   const springWidth = useSpring({
     width: "50%",
-    left: clicked ? "97%" : "50%",
-    color: clicked ? "rgb(85, 75, 220)" : "gray",
+    left: isAboutPageVisible ? "50%":"98%",
+    color: isAboutPageVisible ? "gray":"rgb(85, 75, 220)" ,
     config: {
       mass: 6,
-      tension: 50,
-      friction: 20,
+      tension: 40,
+      friction: 22,
       clamp: true,
       easing: "ease-in-out",
     },
   })
 
   const springRight = useSpring({
-    color: hovered ? "#deae91" : "#111827",
+    color: isAboutSectionHovered ? "#deae91" : "#111827",
     config: { duration: 200 },
   })
 
@@ -32,14 +32,14 @@ const Info = ({ homepage }) => {
         <animated.div
           className="fixed right-0 basebg  border-dotted border-gray-800 h-full m-0 flex "
           style={springWidth}
-          onClick={() => setClicked(!clicked)}
+          onClick={() => setAboutPageStatus(!isAboutPageVisible)}
         >
           <animated.div
             className="relative basebg p-6 h-full w-7 border-r border-gray-600 border-dotted flex flex-none"
             style={springRight}
-            onMouseOver={() => setHovered(true)}
+            onMouseOver={() => setHoveredStatus(true)}
             onMouseOut={() => {
-              setHovered(false)
+              setHoveredStatus(false)
             }}
           >
             <div className="absolute top-1/2 right-4 w-full bg-transparent sftext h-10 origin-top-right transform rotate-90 uppercase text-xs p-1 text-center">
