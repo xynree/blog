@@ -67,6 +67,7 @@ const Home = ({ articles, homepage, homes, notes, links, projects }) => {
     }
   }
 
+  console.log(isMobile)
 if (isMobile) {
   return (<MyContext.Provider
     value={{
@@ -101,7 +102,6 @@ if (isMobile) {
       </div>
     </div>
   </MyContext.Provider>)
-
 }
 
 else return (
@@ -150,7 +150,7 @@ else return (
 
 // API call gets made here and all props get sent down to children components:
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // Run API calls in parallel
   const [articles, categories, homepage, homes, notes, links, projects] =
     await Promise.all([
