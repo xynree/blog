@@ -2,13 +2,13 @@ import React, { createContext, useState} from "react"
 import { fetchAPI } from "../lib/api"
 import { useMediaQuery } from "react-responsive/dist/react-responsive"
 
-import MemoArticles from "../components/Articles/articles"
-import Info from "../components/Info"
+import MemoArticles from "../components/Articles/Articles"
+import AboutContainer from "../components/AboutContainer"
 import Seo from "../components/Seo"
-import Profile from "../components/Profile"
+import SiteHeader from "../components/SiteHeader"
 import MemoForce from "../components/Force/Force"
-import View from "../components/View"
-import Display from "../components/Display"
+import ThumbnailPreviews from "../components/ThumbnailPreviews"
+import ContentDisplay from "../components/ContentDisplay"
 import About from '../components/About'
 
 export const MyContext = createContext({})
@@ -84,7 +84,7 @@ const Home = ({ articles, homepage, homes, notes, links, projects }) => {
       <div className='flex-none w-full h-1/3'>
       <Seo seo={homepage.seo} />
         <div className="w-full flex-none">
-          <Profile title={homepage.hero.title} />
+          <SiteHeader title={homepage.hero.title} />
           <About description={homepage.hero.description}/>
         </div>
         <MemoArticles
@@ -98,7 +98,7 @@ const Home = ({ articles, homepage, homes, notes, links, projects }) => {
         currentPage === '' ? 
         '' 
         :  
-        <><Display/></>
+        <><ContentDisplay/></>
         }
       </div>
     </div>
@@ -120,7 +120,7 @@ else return (
       <Seo seo={homepage.seo} />
       <div className="flex flex-col w-full h-full float-left cursor-pointer overflow-scroll nodisplay justify-start align-start p-0">
         <div className="h-28 flex-none">
-          <Profile title={homepage.hero.title} />
+          <SiteHeader title={homepage.hero.title} />
         </div>
         <div className="relative flex justify-center align-center flex-none">
           <MemoForce switchDirectory={switchDirectory} />
@@ -134,13 +134,13 @@ else return (
       <div className="flex justify-between h-full w-full  divide-x divide-gray-600 border-dotted float-right overflow-scroll nodisplay">
       {currentPage === '' ? 
         <>
-          <View />
-          <Info homepage={homepage} />
+          <ThumbnailPreviews />
+          <AboutContainer homepage={homepage} />
         </>
         :  
         <>
-        <Display />
-        <Info homepage={homepage} />
+        <ContentDisplay />
+        <AboutContainer homepage={homepage} />
         </>}
       
       </div>

@@ -1,5 +1,5 @@
 import React from "react"
-import Card from "./Card/card"
+import Card from "./Card/Card"
 import { useContext, useMemo } from "react"
 import { MyContext } from "../../pages"
 import { useSpring, animated } from "react-spring"

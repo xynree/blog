@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { MyContext } from "../pages"
 import { getStrapiMedia } from "../lib/media"
 
-const DefaultHome = () => {
+const ThumbnailPreviews = () => {
   const [thumbnails] = useContext(MyContext).addThumbs
 
   const getRandomPos = () => {
@@ -30,4 +30,4 @@ const DefaultHome = () => {
   )
 }
 
-export default DefaultHome
+export default ThumbnailPreviews

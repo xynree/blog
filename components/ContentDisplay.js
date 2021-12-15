@@ -4,10 +4,9 @@ import { MyContext } from "../pages"
 import ReactMarkdown from "react-markdown"
 import Link from "next/link"
 
-const Display = () => {
+const ContentDisplay = () => {
   const currentDirectory = useContext(MyContext).currentDirectory
   const [currentPage] = useContext(MyContext).switchPage
-
 
   switch (currentDirectory.title) {
     case "blog":
@@ -108,4 +107,4 @@ const Display = () => {
   }
 }
 
-export default Display
+export default ContentDisplay

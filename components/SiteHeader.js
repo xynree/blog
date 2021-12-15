@@ -2,7 +2,7 @@ import { useSpring, animated } from "react-spring"
 import React, { useContext, useState } from "react"
 import { MyContext } from "../pages"
 
-const Profile = ({ title }) => {
+const SiteHeader = ({ title }) => {
   const { switchDirectory } = useContext(MyContext)
 
   const [{ color }, set] = useSpring(() => ({
@@ -11,6 +11,7 @@ const Profile = ({ title }) => {
       duration: 200,
     },
   }))
+  
   return (
     <animated.div
       style={{ color }}
@@ -24,4 +25,4 @@ const Profile = ({ title }) => {
   )
 }
 
-export default Profile
+export default SiteHeader

@@ -1,16 +1,16 @@
 import { useSpring, animated } from "react-spring"
 import { useState, useContext } from "react"
 import About from "./About"
-import { MyContext } from "../pages"
+import { MyContext } from "../pages/index"
 
-const Info = ({ homepage }) => {
+const AboutContainer = ({ homepage }) => {
   const [isAboutSectionHovered, setHoveredStatus] = useState(false)
   const [isAboutPageVisible, setAboutPageStatus] = useContext(MyContext).aboutPageStatus
   const isMobile = useContext(MyContext).isMobile
 
   const springWidth = useSpring({
     width: "50%",
-    left: isAboutPageVisible ? "50%":"98%",
+    left: isAboutPageVisible ? "50%":"97%",
     color: isAboutPageVisible ? "gray":"rgb(85, 75, 220)" ,
     config: {
       mass: 6,
@@ -54,4 +54,4 @@ const Info = ({ homepage }) => {
   else return ''
 }
 
-export default Info
+export default AboutContainer
