@@ -16,6 +16,7 @@
     "@react-spring/parallax": "^9.2.4",
     "ansi-regex": "5.0.1",
     "d3": "^7.0.1",
+    "debug": "2.6.9",
     "glob-parent": "5.1.2",
     "global": "^4.4.0",
     "hosted-git-info": "2.8.9",
