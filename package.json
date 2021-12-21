@@ -2,7 +2,6 @@
   "name": "my-blog",
   "version": "0.1.0",
   "private": true,
-  "about":"Personal site built on Next.JS & Strapi with Tailwind, d3, & React-Spring.",
   "scripts": {
     "develop": "next dev",
     "dev": "next dev",
