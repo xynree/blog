@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { MyContext } from "../../../pages"
 import { useSpring, animated } from "react-spring"
 import Link from "next/link"

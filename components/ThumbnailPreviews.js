@@ -1,5 +1,4 @@
 import { useContext } from "react"
-
 import { MyContext } from "../pages"
 import { getStrapiMedia } from "../lib/media"
 
